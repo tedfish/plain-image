@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
+import { SiProbot } from "react-icons/si";
 
 import { Inter } from "@next/font/google";
 import styles from "../styles/index.module.scss";
@@ -115,9 +116,9 @@ export default function Home() {
 
         <div className={styles.footer}>
           <div className={styles.logo}>
-            <img src="/dog.png" className={styles.icon} />
+            <SiProbot />
             <h2>
-              Plain<em>AI</em>
+              Pl<em>ai</em>n
             </h2>
           </div>
           <div className={styles.copyright}>

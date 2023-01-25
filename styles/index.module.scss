@@ -29,6 +29,11 @@
     margin-top: 5vh;
     padding: 1em;
     color: black;
+    svg {
+      width: 2em;
+      height: 2em;
+      margin: 0 auto 1em;
+    }
     .copyright {
       text-align: center;
       font-size: 0.75em;
@@ -48,10 +53,12 @@
     }
     .logo h2 {
       font-size: 0.85rem;
-      font-weight: 500;
+      font-weight: 700;
+      text-transform: uppercase;
       margin: 0;
       em {
         color: #cc092f;
+        font-style: normal;
       }
     }
   }
@@ -176,7 +183,8 @@
       letter-spacing: 0.25em;
       padding: 1em;
       em {
-        color: red;
+        color: #cc092f;
+        font-style: normal;
       }
     }
   }
