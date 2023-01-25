@@ -1,0 +1,187 @@
+@font-face {
+    font-family: "ColfaxAI";
+    src: url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff2)
+        format("woff2"),
+      url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff) format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "ColfaxAI";
+    src: url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff2) format("woff2"),
+      url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff) format("woff");
+    font-weight: bold;
+    font-style: normal;
+  }
+  .main,
+  .main input {
+    font-size: 16px;
+    line-height: 24px;
+    color: #353740;
+    font-family: "ColfaxAI", Helvetica, sans-serif;
+  }
+  .main {
+    margin: 0;
+  }
+  
+  .footer {
+    // background: rgba(0, 0, 0, 0.05);
+    margin-top: 5vh;
+    padding: 1em;
+    color: black;
+    .copyright {
+      text-align: center;
+      font-size: 0.75em;
+    }
+  
+    .icon {
+      width: 1.5em;
+    }
+    .logo {
+      display: inline-block;
+  
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .logo h2 {
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin: 0;
+      em {
+        color: #cc092f;
+      }
+    }
+  }
+  
+  .inputForm {
+    text-align: center;
+    border: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+  
+    .currentResult {
+      .promptText {
+        font-size: 1em;
+        line-height: 1;
+        font-weight: 800;
+        margin: 0;
+        padding: 1em;
+        background: rgba(255, 255, 255, 0.95);
+      }
+      .resultImage {
+        padding: 1em;
+        background-color: rgba(255, 255, 255, 0.5);
+        img {
+          display: block;
+          height: 250px;
+          width: 250px;
+          margin: 0 auto;
+          border-radius: 50%;
+          object-fit: scale-down;
+          background: olivedrab;
+          border: 0.5em solid white;
+        }
+      }
+    }
+    ::placeholder {
+      color: #cdcdcd;
+      opacity: 0.5;
+      font-size: 1rem;
+    }
+    form {
+      flex: 2;
+      margin: 0 auto;
+      padding: 2.5em;
+    }
+    input[type="text"] {
+      font-size: 1.25em;
+      padding: 0.75em 1em;
+      border: 0;
+      background: none;
+      border-bottom: 1px solid #44ce29;
+      outline: 0;
+      width: 100%;
+      text-align: center;
+      box-sizing: border-box;
+      margin-bottom: 0.5em;
+      color: white;
+      font-weight: 600;
+    }
+    input[type="submit"] {
+      padding: 1em 0;
+      color: black;
+      background-color: #44ce29;
+      border: none;
+      text-align: center;
+      cursor: pointer;
+      display: block;
+      width: 100%;
+      text-transform: uppercase;
+      font-weight: 900;
+      font-size: 0.85em;
+      letter-spacing: 0.25em;
+    }
+  }
+  
+  .thinking {
+    margin: 1em;
+    font-size: 0.8em;
+    font-weight: 800;
+    color: #44ce29;
+  }
+  .resultList {
+    width: 90%;
+    margin: 0 auto;
+    li {
+      display: flex;
+  
+      overflow: hidden;
+      // border-radius: 25em;
+      margin: 1em 0;
+  
+      background: white;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      .resultListImage {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+  
+        img {
+          object-fit: cover;
+          padding: 1em;
+        }
+      }
+  
+      h4 {
+        flex: 4;
+        padding: 1em;
+      }
+    }
+  }
+  .header {
+    background: rgba(0, 0, 0, 0.125);
+    width: 100%;
+    z-index: 1;
+    text-align: center;
+    h3 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: rgba(0, 0, 0, 0.75);
+      letter-spacing: 0.25em;
+      padding: 1em;
+      em {
+        color: red;
+      }
+    }
+  }
+  
+  .shadow {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  }
+  
