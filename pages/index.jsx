@@ -62,7 +62,7 @@ export default function Home() {
       <main className={styles.main}>
         <Header />
         {/* <Signup /> */}
-        <LoginButton />
+        {/* <LoginButton />
         {result[0] && (
           <div
             className="hero min-h-screen bg-base-200"
@@ -83,102 +83,148 @@ export default function Home() {
               </div>
             </div>
           </div>
-        )}
-        {!result[0] && (
-          <div className="hero min-h-screen bg-base-200">
-            <div className="hero-content flex-col lg:flex-row-reverse">
-              <Image
-                src="https://source.unsplash.com/random"
-                className="max-w-sm rounded-lg shadow-2xl"
-                width={500}
-                height={500}
-              />
-              <div>
-                <h1 className="text-5xl font-bold">Box Office News!</h1>
-                <p className="py-6">
-                  Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                  assumenda excepturi exercitationem quasi. In deleniti eaque
-                  aut repudiandae et a id nisi.
-                </p>
-                <button className="btn btn-primary">Get Started</button>
-              </div>
+        )} */}
+        <div className="hero min-h-screen bg-base-200">
+          <div className="hero-content flex-col lg:flex-row-reverse">
+            <div>
+              {result[0] && (
+                <div>
+                  <Image
+                    src={result[0].imageUrl}
+                    width={500}
+                    height={500}
+                    alt="Generated image"
+                  />
+                </div>
+              )}
+
+              {promptText && <div className="font-bold">{promptText}</div>}
             </div>
-          </div>
-        )}
-        <div className="container text-center">
-          <div>
-            {result[0] && (
-              <div>
-                <Image
-                  className="mx-auto w-auto object-fit mt-10"
-                  src={result[0].imageUrl}
-                  width={500}
-                  height={500}
-                  alt="Generated image"
+            <div>
+              <h1 className="text-5xl font-bold">Human-Powered AI</h1>
+              <p className="py-6">
+                This technology can be used to quickly and accurately rank AI
+                generated images, making it easier to find the best images for a
+                given task.
+              </p>
+
+              <ul className="steps">
+                <li
+                  data-content={selectAge && "★"}
+                  className="step step-neutral"
+                >
+                  {selectAge && selectAge + " year old"}
+                </li>{" "}
+                <li
+                  data-content={selectRace && "★"}
+                  className="step step-neutral"
+                >
+                  {selectRace}
+                </li>
+                <li
+                  data-content={selectSubject && "★"}
+                  className="step step-neutral"
+                >
+                  {selectSubject}
+                </li>
+              </ul>
+              <form onSubmit={onSubmit} className="my-5 max-w-lg">
+                {/* {rangeval} */}
+                <input
+                  name="selectAge"
+                  value={selectAge}
+                  onChange={(e) => setSelectAge(e.target.value)}
+                  type="range"
+                  min="18"
+                  max="88"
+                  // value={rangeval}
+                  className="range my-5"
+                  step="7"
+                  // onChange={(event) => setRangeval(event.target.value)}
                 />
-              </div>
-            )}
+                <div className="w-full flex justify-between text-xs mb-5">
+                  <span>18</span>
+                  <span>25</span>
+                  <span>32</span>
+                  <span>39</span>
+                  <span>46</span>
+                  <span>53</span>
+                  <span>60</span>
+                  <span>67</span>
+                  <span>74</span>
+                  <span>81</span>
+                  <span>88</span>
+                </div>
+                <select
+                  className="select w-full max-w-lg select-ghost"
+                  name="selectRace"
+                  value={selectRace}
+                  onChange={(e) => setSelectRace(e.target.value)}
+                >
+                  {" "}
+                  <option disabled selected>
+                    Race
+                  </option>
+                  <option>Chinese</option>
+                  <option>Indian</option>
+                  <option>American</option>
+                  <option>Indonesian</option>
+                  <option>Brazilian</option>
+                  <option>Pakistani</option>
+                  <option>Nigerian</option>
+                  <option>Bangladeshi</option>
+                  <option>Russian</option>
+                  <option>Mexican</option>
+                  <option>Japanese</option>
+                  <option>Ethiopian</option>
+                  <option>Philippine</option>
+                  <option>Vietnamese</option>
+                  <option>Egyptian</option>
+                  <option>German</option>
+                  <option>Iranian</option>
+                  <option>Turkish</option>
+                  <option>Congolese</option>
+                  <option>Thai</option>
+                  <option>French</option>
+                  <option>South African</option>
+                  <option>Colombian</option>
+                  <option>Ukrainian</option>
+                  <option>Spanish</option>
+                  <option>Maroccan</option>
+                  <option>Italian</option>
+                  <option>Tanzania</option>
+                  <option>Burmese</option>
+                  <option>Sudanese</option>
+                  <option>Korean</option>
+                  <option>Argentine</option>
+                  <option>Algerian</option>
+                  <option>Polish</option>
+                  <option>Ugandan</option>
+                  <option>Australian</option>
+                  <option>Malaysian</option>
+                  <option>Kazakhstani</option>
+                  <option>Cameroonian</option>
+                  <option>Nepalese</option>
+                  <option>Afghan</option>
+                  <option>Iraqi</option>
+                  <option>Peruvian</option>
+                </select>
+                <select
+                  className="select w-full max-w-lg select-ghost"
+                  name="selectSubject"
+                  value={selectSubject}
+                  onChange={(e) => setSelectSubject(e.target.value)}
+                >
+                  <option disabled selected>
+                    Subject
+                  </option>
 
-            {promptText && <div className="font-bold">{promptText}</div>}
-          </div>
-          <ul className="steps">
-            <li data-content={selectSubject} className="step step-neutral">
-              Subject
-            </li>
-            <li data-content={selectAge} className="step step-neutral">
-              Age
-            </li>
-            <li data-content={selectRace} className="step step-neutral">
-              Step 3
-            </li>
-            <li data-content="✕" className="step step-neutral">
-              Step 4
-            </li>
-          </ul>
-          <form onSubmit={onSubmit}>
-            {rangeval}
-            <input
-              name="selectAge"
-              value={selectAge}
-              onChange={(e) => setSelectAge(e.target.value)}
-              type="range"
-              min="1"
-              max="100"
-              // value={rangeval}
-              className="range"
-              step="1"
-              // onChange={(event) => setRangeval(event.target.value)}
-            />
-            <div className="w-full flex justify-between text-xs px-2">
-              <span>|</span>
-              <span>|</span>
-              <span>|</span>
-              <span>|</span>
-              <span>|</span>
-            </div>
+                  <option value="">Any</option>
+                  <option>Woman</option>
+                  <option>Man</option>
+                </select>
 
-            <select
-              className="form-select px-4 py-3"
-              name="selectSubject"
-              value={selectSubject}
-              onChange={(e) => setSelectSubject(e.target.value)}
-            >
-              <option>Woman</option>
-              <option>Man</option>
-              <option>Dog</option>
-              <option>Cat</option>
-            </select>
-            <select
-              className="form-select px-4 py-3"
-              name="selectRace"
-              value={selectRace}
-              onChange={(e) => setSelectRace(e.target.value)}
-            >
-              <option>American</option>
-              <option>African</option>
-              <option>Asian</option>
-            </select>
-            {/* <select
+                {/* <select
               className="form-select px-4 py-3"
               name="selectAge"
               value={selectAge}
@@ -195,11 +241,16 @@ export default function Home() {
               <option>88</option>
               <option>98</option>
             </select> */}
-            {clicked && <div className={styles.thinking}>thinking...</div>}
 
-            <input type="submit" value="Generate image" />
-          </form>
+                <button type="submit" className="btn btn-primary block w-full">
+                  Generate image
+                </button>
+              </form>
+              {clicked && <div className={styles.thinking}>thinking...</div>}
+            </div>
+          </div>
         </div>
+
         <ul className={styles.resultList}>
           {result.map((e, idx) => (
             <li key={idx} className={styles.shadow}>
