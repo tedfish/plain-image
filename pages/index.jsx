@@ -164,7 +164,8 @@ export default function Home() {
                   {" "}
                   <option disabled selected>
                     Race
-                  </option>
+                  </option>{" "}
+                  <option value="">Any</option>
                   <option>Chinese</option>
                   <option>Indian</option>
                   <option>American</option>
