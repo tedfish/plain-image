@@ -64,7 +64,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <Header />
-        <div className="min-h-screen">
+        <div className="min-h-screen flex-auto">
           <div>PLAIN</div>
         </div>
         {/* <Signup /> */}
