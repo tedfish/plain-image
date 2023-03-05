@@ -1,73 +1,76 @@
 import { Configuration, OpenAIApi } from "openai";
 
 const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
-export default async function (req, res) {
-    if (!configuration.apiKey) {
-        res.status(500).json({
-            error: {
-                message:
-                    "OpenAI API key not configured, please follow instructions in README.md",
-            },
-        });
-        return;
+export default async function loadData(req, res) {
+  if (!configuration.apiKey) {
+    res.status(500).json({
+      error: {
+        message:
+          "OpenAI API key not configured, please follow instructions in README.md",
+      },
+    });
+    return;
+  }
+
+  const promptText = req.body.promptText || "";
+  if (promptText.trim().length === 0) {
+    res.status(400).json({
+      error: {
+        message: "Please enter a valid prompt",
+      },
+    });
+    return;
+  }
+
+  try {
+    const response = await openai.createImage({
+      prompt: generatePrompt(promptText),
+      n: 1,
+      size: "512x512",
+    });
+    // image_url = response.data.data[0].url;
+
+    const completion = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: generateTags(promptText),
+      temperature: 0.6,
+    });
+    console.log("completion", completion.data.choices[0].text);
+    res.status(200).json({
+      result: response.data.data[0].url,
+      test: 0,
+      tags: completion.data.choices[0].text,
+    });
+  } catch (error) {
+    // Consider adjusting the error handling logic for your use case
+    if (error.response) {
+      console.error(error.response.status, error.response.data);
+      res.status(error.response.status).json(error.response.data);
+    } else {
+      console.error(`Error with OpenAI API request: ${error.message}`);
+      res.status(500).json({
+        error: {
+          message: "An error occurred during your request.",
+        },
+      });
     }
-
-    const promptText = req.body.promptText || "";
-    if (promptText.trim().length === 0) {
-        res.status(400).json({
-            error: {
-                message: "Please enter a valid prompt",
-            },
-        });
-        return;
-    }
-
-    try {
-        const response = await openai.createImage({
-            prompt: generatePrompt(promptText),
-            n: 1,
-            size: "512x512",
-
-        });
-        // image_url = response.data.data[0].url;
-
-        const completion = await openai.createCompletion({
-            model: "text-davinci-003",
-            prompt: generateTags(promptText),
-            temperature: 0.6,
-        });
-        console.log("completion", completion.data.choices[0].text);
-        res.status(200).json({ result: response.data.data[0].url, test: 0, tags: completion.data.choices[0].text });
-    } catch (error) {
-        // Consider adjusting the error handling logic for your use case
-        if (error.response) {
-            console.error(error.response.status, error.response.data);
-            res.status(error.response.status).json(error.response.data);
-        } else {
-            console.error(`Error with OpenAI API request: ${error.message}`);
-            res.status(500).json({
-                error: {
-                    message: "An error occurred during your request.",
-                },
-            });
-        }
-    }
+  }
 }
 
 function generatePrompt(promptText) {
-    const capitalizedAPromptText =
-        promptText[0].toUpperCase() + promptText.slice(1).toLowerCase();
-    return `An image of ${capitalizedAPromptText}`;
+  const capitalizedAPromptText =
+    promptText[0].toUpperCase() + promptText.slice(1).toLowerCase();
+  return `A photo of a ${capitalizedAPromptText}`;
 }
 
 function generateTags(promptText) {
-    const capitalizedAPromptText =
-        promptText[0].toUpperCase() + promptText.slice(1).toLowerCase();
-    return `Give me an interesting word that enhances ${capitalizedAPromptText}`;
+  const capitalizedAPromptText =
+    promptText[0].toUpperCase() + promptText.slice(1).toLowerCase();
+  return `Give me an interesting word that enhances ${capitalizedAPromptText}`;
 }
 
 // function generatePrompt(animal) {
