@@ -3,7 +3,7 @@ import styles from "../styles/index.module.scss";
 
 function Header() {
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 bg-gray-100">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -40,7 +40,7 @@ function Header() {
       </div>
       <div className="navbar-center">
         <a className="btn btn-ghost normal-case text-xl">
-          PL<em className="not-italic text-rose-700	">AI</em>N
+          P<em className="not-italic text-rose-700	">AI</em>R :: Photo
         </a>
       </div>
       <div className="navbar-end">
