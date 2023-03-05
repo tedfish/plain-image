@@ -40,8 +40,7 @@ function Header() {
       </div>
       <div className="navbar-center">
         <a className="btn btn-ghost normal-case text-xl">
-          PL<em className="not-italic text-rose-700	">AI</em>N&nbsp;
-          <em className="not-italic text-rose-700	">RANK</em>
+          PL<em className="not-italic text-rose-700	">AI</em>N
         </a>
       </div>
       <div className="navbar-end">
