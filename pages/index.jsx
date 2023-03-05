@@ -6,7 +6,7 @@ import { SiProbot } from "react-icons/si";
 import styles from "../styles/index.module.scss";
 // import Signup from "./Signup";
 import Header from "./Header";
-import LoginButton from "../components/LoginBtn";
+// import LoginButton from "../components/LoginBtn";
 
 //  const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
@@ -19,7 +19,10 @@ export default function Home() {
   const [rangeval, setRangeval] = useState(null);
 
   useEffect(() => {
-    setPromptText(selectAge + " year old " + selectRace + " " + selectSubject);
+    selectAge &&
+      setPromptText(
+        selectAge + " year old " + selectRace + " " + selectSubject
+      );
   }, [selectSubject, selectRace, selectAge]);
 
   async function onSubmit(event) {
@@ -57,10 +60,13 @@ export default function Home() {
     <div>
       <Head>
         <title>Plain AI</title>
-        <link rel="icon" href="/dog.png" />
+        {/* <link rel="icon" href="/dog.png" /> */}
       </Head>
       <main className={styles.main}>
         <Header />
+        <div className="min-h-screen">
+          <div>PLAIN</div>
+        </div>
         {/* <Signup /> */}
         {/* <LoginButton />
         {result[0] && (
@@ -85,30 +91,49 @@ export default function Home() {
           </div>
         )} */}
         <div className="hero min-h-screen bg-base-200">
-          <div className="hero-content flex-col lg:flex-row-reverse">
-            <div>
-              {result[0] && (
-                <div>
-                  <Image
-                    src={result[0].imageUrl}
-                    width={500}
-                    height={500}
-                    alt="Generated image"
-                  />
-                </div>
-              )}
+          <div className="hero-content flex-col lg:flex-row-reverse bg-slate-300">
+            {!clicked && (
+              <>
+                {result[0] && (
+                  <div>
+                    <Image
+                      src={result[0].imageUrl}
+                      width={500}
+                      height={500}
+                      alt="Generated image"
+                    />
+                    <div className="font-bold text-center text-xs p-2 text-slate-500">
+                      {promptText}
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
 
-              {promptText && <div className="font-bold">{promptText}</div>}
-            </div>
-            <div>
-              <h1 className="text-5xl font-bold">Human-Powered AI</h1>
-              <p className="py-6">
-                This technology can be used to quickly and accurately rank AI
-                generated images, making it easier to find the best images for a
-                given task.
+            <div className="max-w-lg p-10 bg-slate-100">
+              <h2 className="text-md uppercase text-rose-700 font-semibold mb-5">
+                Human-Powered AI Marketing
+              </h2>
+              <h1 className="text-5xl font-bold">
+                What is PL<em className="not-italic text-rose-700	">AI</em>N?
+              </h1>
+              <p className="py-5">
+                Our mission is to connect human ingenuity with AI to create
+                effective, scalable, and ethical solutions for modern day
+                marketing teams.
               </p>
+              <div className="divider text-rose-500 font-semibold mb-5">
+                Landing Page Builder
+              </div>
+              <div className="divider text-rose-500 font-semibold mb-5">
+                Copy Writer
+              </div>
 
-              <ul className="steps">
+              <div className="divider text-rose-500 font-semibold mb-5">
+                Person Generator
+              </div>
+
+              <ul className="steps w-full">
                 <li
                   data-content={selectAge && "★"}
                   className="step step-neutral"
@@ -155,97 +180,89 @@ export default function Home() {
                   <span>81</span>
                   <span>88</span>
                 </div>
-                <select
-                  className="select w-full max-w-lg select-ghost"
-                  name="selectRace"
-                  value={selectRace}
-                  onChange={(e) => setSelectRace(e.target.value)}
-                >
-                  {" "}
-                  <option disabled selected>
-                    Race
-                  </option>{" "}
-                  <option value="">Any</option>
-                  <option>Chinese</option>
-                  <option>Indian</option>
-                  <option>American</option>
-                  <option>Indonesian</option>
-                  <option>Brazilian</option>
-                  <option>Pakistani</option>
-                  <option>Nigerian</option>
-                  <option>Bangladeshi</option>
-                  <option>Russian</option>
-                  <option>Mexican</option>
-                  <option>Japanese</option>
-                  <option>Ethiopian</option>
-                  <option>Philippine</option>
-                  <option>Vietnamese</option>
-                  <option>Egyptian</option>
-                  <option>German</option>
-                  <option>Iranian</option>
-                  <option>Turkish</option>
-                  <option>Congolese</option>
-                  <option>Thai</option>
-                  <option>French</option>
-                  <option>South African</option>
-                  <option>Colombian</option>
-                  <option>Ukrainian</option>
-                  <option>Spanish</option>
-                  <option>Maroccan</option>
-                  <option>Italian</option>
-                  <option>Tanzania</option>
-                  <option>Burmese</option>
-                  <option>Sudanese</option>
-                  <option>Korean</option>
-                  <option>Argentine</option>
-                  <option>Algerian</option>
-                  <option>Polish</option>
-                  <option>Ugandan</option>
-                  <option>Australian</option>
-                  <option>Malaysian</option>
-                  <option>Kazakhstani</option>
-                  <option>Cameroonian</option>
-                  <option>Nepalese</option>
-                  <option>Afghan</option>
-                  <option>Iraqi</option>
-                  <option>Peruvian</option>
-                </select>
-                <select
-                  className="select w-full max-w-lg select-ghost"
-                  name="selectSubject"
-                  value={selectSubject}
-                  onChange={(e) => setSelectSubject(e.target.value)}
-                >
-                  <option disabled selected>
-                    Subject
-                  </option>
 
-                  <option value="">Any</option>
-                  <option>Woman</option>
-                  <option>Man</option>
-                </select>
+                {selectAge && (
+                  <>
+                    <select
+                      className="select w-full max-w-lg select-ghost"
+                      name="selectRace"
+                      value={selectRace}
+                      onChange={(e) => setSelectRace(e.target.value)}
+                    >
+                      {" "}
+                      <option disabled selected>
+                        Race
+                      </option>
+                      <option>Any</option>
+                      <option>Chinese</option>
+                      <option>Indian</option>
+                      <option>American</option>
+                      <option>Indonesian</option>
+                      <option>Brazilian</option>
+                      <option>Pakistani</option>
+                      <option>Nigerian</option>
+                      <option>Bangladeshi</option>
+                      <option>Russian</option>
+                      <option>Mexican</option>
+                      <option>Japanese</option>
+                      <option>Ethiopian</option>
+                      <option>Philippine</option>
+                      <option>Vietnamese</option>
+                      <option>Egyptian</option>
+                      <option>German</option>
+                      <option>Iranian</option>
+                      <option>Turkish</option>
+                      <option>Congolese</option>
+                      <option>Thai</option>
+                      <option>French</option>
+                      <option>South African</option>
+                      <option>Colombian</option>
+                      <option>Ukrainian</option>
+                      <option>Spanish</option>
+                      <option>Maroccan</option>
+                      <option>Italian</option>
+                      <option>Tanzania</option>
+                      <option>Burmese</option>
+                      <option>Sudanese</option>
+                      <option>Korean</option>
+                      <option>Argentine</option>
+                      <option>Algerian</option>
+                      <option>Polish</option>
+                      <option>Ugandan</option>
+                      <option>Australian</option>
+                      <option>Malaysian</option>
+                      <option>Kazakhstani</option>
+                      <option>Cameroonian</option>
+                      <option>Nepalese</option>
+                      <option>Afghan</option>
+                      <option>Iraqi</option>
+                      <option>Peruvian</option>
+                    </select>
+                    <select
+                      className="select w-full max-w-lg select-ghost"
+                      name="selectSubject"
+                      value={selectSubject}
+                      onChange={(e) => setSelectSubject(e.target.value)}
+                    >
+                      <option disabled selected>
+                        Subject
+                      </option>
 
-                {/* <select
-              className="form-select px-4 py-3"
-              name="selectAge"
-              value={selectAge}
-              onChange={(e) => setSelectAge(e.target.value)}
-            >
-              {rangeval > 0 && <option>{rangeval}</option>}
-              <option>18</option>
-              <option>28</option>
-              <option>38</option>
-              <option>48</option>
-              <option>58</option>
-              <option>68</option>
-              <option>78</option>
-              <option>88</option>
-              <option>98</option>
-            </select> */}
+                      <option>Any</option>
+                      <option>Woman</option>
+                      <option>Man</option>
+                    </select>
 
-                <button type="submit" className="btn btn-primary block w-full">
-                  Generate image
-                </button>
+                    {!clicked && (
+                      <button
+                        type="submit"
+                        className="btn btn-primary block w-full mt-5"
+                      >
+                        Generate image
+                      </button>
+                    )}
+                  </>
+                )}
               </form>
               {clicked && <div className={styles.thinking}>thinking...</div>}
             </div>
@@ -256,7 +273,7 @@ export default function Home() {
           {result.map((e, idx) => (
             <li key={idx} className={styles.shadow}>
               <div className={styles.resultListImage}>
-                <Image width={500} height={500} src={e.imageUrl} />
+                <Image width={500} height={500} src={e.imageUrl} alt="text" />
               </div>
               <h4>{e.prompt}</h4>
             </li>

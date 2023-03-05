@@ -73,7 +73,7 @@ function generateTags(promptText) {
   return `Give me an interesting word that enhances ${capitalizedAPromptText}`;
 }
 
-// function generatePrompt(animal) {
+// function generateText(animal) {
 //   const capitalizedAPromptText =
 //     animal[0].toUpperCase() + animal.slice(1).toLowerCase();
 //   return `Suggest three names for an animal that is a superhero.
