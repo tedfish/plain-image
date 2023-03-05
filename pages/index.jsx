@@ -63,10 +63,15 @@ export default function Home() {
         {/* <link rel="icon" href="/dog.png" /> */}
       </Head>
       <main className={styles.main}>
-        <Header />
-        <div className="min-h-screen flex-auto">
-          <div>PLAIN</div>
+        <div className="min-h-screen flex items-center	justify-center bg-white">
+          <div className=" border-8 bg-white rounded-full overflow-hidden">
+            <a className="btn btn-ghost normal-case text-xl">
+              PL<em className="not-italic text-rose-700	">AI</em>N
+            </a>
+          </div>
         </div>
+        <Header />
+
         {/* <Signup /> */}
         {/* <LoginButton />
         {result[0] && (
